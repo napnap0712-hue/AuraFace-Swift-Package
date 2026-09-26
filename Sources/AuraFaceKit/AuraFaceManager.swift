@@ -34,7 +34,7 @@ public enum AuraFaceError: LocalizedError {
 public final class AuraFaceManager {
     public static let shared = AuraFaceManager()
 
-    public static let inputSize = CGSize(width: 112, height: 112)
+    public nonisolated static let inputSize = CGSize(width: 112, height: 112)
     public static let embeddingDimension = 512
 
     // RuiSumida/AuraFace-v1-CoreML
@@ -117,7 +117,7 @@ public final class AuraFaceManager {
             "faceImage": MLFeatureValue(pixelBuffer: pixelBuffer)
         ])
 
-        let output = try model.prediction(from: provider)
+        let output = try await model.prediction(from: provider)
 
         guard let multiArray = output.featureValue(for: "embedding")?.multiArrayValue else {
             throw AuraFaceError.embeddingMissing
