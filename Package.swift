@@ -15,10 +15,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "AuraFaceKit",
-            resources: [
-                .process("Resources")
-            ]
+            name: "AuraFaceKit"
         )
     ]
 )
